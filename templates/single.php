@@ -14,8 +14,6 @@
         <p class="lead">En construction</p>
         <?php
 
-        $article = new \App\src\DAO\ArticleDAO();
-        $articles = $article->getArticle($_GET['id']);
         $data = $articles->fetch();
         ?>
         <div class="text-left">
@@ -26,6 +24,27 @@
         <?php
         $articles->closeCursor();
         ?>
+
+        <?php
+
+        $form = new \App\src\DAO\FormDAO(array(
+            'name'=>'Votre nom',
+            'comment'=>'Votre commentaire'
+        ));
+
+        echo $form->input('name');
+
+        echo $form->textarea('comment');
+
+        echo $form->submit();
+
+        ?>
+
         <a href="index.php">Retour à l'accueil</a>
+
+        <?php
+            var_dump($comments);
+
+        ?>
 
 </body>

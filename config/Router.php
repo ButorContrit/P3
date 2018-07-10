@@ -9,7 +9,16 @@
 namespace App\config;
 
 
+use App\src\controller\FrontController;
+
 class Router {
+
+    private $frontController;
+
+    function __construct()
+    {
+        $this->frontController = new FrontController();
+    }
 
     public function start()
     {
@@ -18,14 +27,14 @@ class Router {
             {
                 if($_GET['route'] === 'article'){
                     $id = $_GET['id'];
-                    require '../templates/single.php';
+                    $this->frontController->article($id);
                 }
                 else{
                     echo 'page inconnue';
                 }
             }
             else{
-                require '../templates/home.php';
+                $this->frontController->home();
             }
         }
         catch (Exception $e)

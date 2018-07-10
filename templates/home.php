@@ -15,8 +15,6 @@
 <h1>Billet simple pour l'Alaska</h1>
 
 <?php
-$article = new \App\src\DAO\ArticleDAO();
-$articles = $article->getArticles();
 while( $data = $articles->fetch())
 {
     ?>

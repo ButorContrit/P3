@@ -31,6 +31,10 @@ class FormDAO {
         >');
     }
 
+    public function textarea($name) {
+        return $this->surround('<textarea name="' . $name .'" value="">' . $this->getValue($name) . '</textarea>');
+    }
+
     public function submit() {
         return $this->surround('<button type="submit">Envoyer</button>');
     }
