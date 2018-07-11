@@ -27,12 +27,13 @@ class FormDAO {
     }
 
     public function input($name) {
-        return $this->surround('<input type="text" name="' . $name .'" value="' . $this->getValue($name) . '"
-        >');
+        return $this->surround('<label for="' . $name .'">' . $this->getValue($name) . ': </label><input type="text" name="' . $name .'"
+        value="" id="' . $name .'">');
     }
 
     public function textarea($name) {
-        return $this->surround('<textarea name="' . $name .'" value="">' . $this->getValue($name) . '</textarea>');
+        return $this->surround('<label for="' . $name .'">' . $this->getValue($name) . ': </label><textarea name="' . $name .'"
+        value="" id="' . $name .'"></textarea>');
     }
 
     public function submit() {

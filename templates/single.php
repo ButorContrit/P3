@@ -40,11 +40,20 @@
 
         ?>
 
-        <a href="index.php">Retour à l'accueil</a>
-
         <?php
-            var_dump($comments);
-
+        while($data = $comments->fetch())
+        {
+            ?>
+            <div class="text-left">
+                <p>Le <?= $data['comment_date'];?>, <strong><?= $data['author'];?></strong> a écrit:</p>
+                <p><?= $data['comment_content'];?></p>
+            </div>
+            <br>
+        <?php
+        }
+        $articles->closeCursor();
         ?>
+
+        <a href="index.php">Retour à l'accueil</a>
 
 </body>
