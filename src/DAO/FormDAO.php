@@ -9,7 +9,7 @@
 namespace App\src\DAO;
 
 
-class FormDAO {
+class FormDAO extends DAO {
     private  $data;
 
     public $surround = 'p';

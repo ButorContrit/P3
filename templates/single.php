@@ -25,6 +25,7 @@
         $articles->closeCursor();
         ?>
 
+        <form method = "post" action="index.php?route=article&id=<?=$_GET['id']?>">
         <?php
 
         $form = new \App\src\DAO\FormDAO(array(
@@ -38,6 +39,25 @@
 
         echo $form->submit();
 
+        ?>
+        </form>
+
+        <?php
+            if (isset($_POST['name']) AND isset($_POST['comment']))
+                {
+                    if (!empty($_POST['name']) AND !empty($_POST['comment']))
+                    {
+                        $id = $_GET['id'];
+                        $name = $_POST['name'];
+                        $comment = $_POST['comment'];
+                        $comment_DAO = new \App\src\DAO\CommentDAO();
+                        $comment_DAO->setNewComment($id, $name, $comment);
+                    }
+                    else
+                    {
+                        echo 'Tous les champs doivent être remplis.';
+                    }
+                }
         ?>
 
         <?php
