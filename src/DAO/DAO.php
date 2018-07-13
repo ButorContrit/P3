@@ -48,7 +48,4 @@ abstract class DAO
         }
     }
 
-    private function zzz() {
-
-    }
 }

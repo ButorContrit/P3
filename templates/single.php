@@ -67,11 +67,61 @@
             <div class="text-left">
                 <p>Le <?= $data['comment_date'];?>, <strong><?= $data['author'];?></strong> a écrit:</p>
                 <p><?= $data['comment_content'];?></p>
+                <p>
+                    <form method="post" action="<?= 'index.php?route=comment_alert&id=' . $data['id'] . '';?>">
+
+                    <?php
+                    if (!isset($_POST['comment_alert']))
+                    {
+                        $comment_id = $data['id'];
+                        $form = new \App\src\DAO\FormDAO(array(
+                            'name' => 'comment_alert'
+                        ));
+
+                        echo $form->hidden('comment_alert', $comment_id);
+                        echo $form->submit_signaler();
+                    }
+                    ?>
+
+                    </form>
+                </p>
+
+                    <?php
+                    if (isset($_POST['comment_alert']))
+                    {
+                        echo 'Etes-vous sûr de vouloir signaler ce commantaire?';
+
+                        echo '<form method="post" action="index.php?route=comment_alert&id=' . $data['id'] . '">';
+
+                        $comment_id = $data['id'];
+                        $form = new \App\src\DAO\FormDAO(array(
+                            'name'=>'comment_alert_step_2'
+                        ));
+
+                        echo $form->hidden('comment_alert_step_2', $comment_id);
+                        echo $form->submit_signaler();
+
+                        echo '</form>';
+
+                    }
+                    ?>
+
+                    <?php
+                    if (isset($_POST['comment_alert_step_2']))
+                    {
+                        $comment_id = $data['id'];
+                        $form = new \App\src\DAO\FormDAO(array(
+                            'name' => 'comment_alert'
+                        ));
+                        $comment_DAO = new \App\src\DAO\CommentDAO();
+                        $comment_DAO->commentAlert($_POST['comment_alert_step_2']);
+                    }
+                    ?>
             </div>
             <br>
         <?php
         }
-        $articles->closeCursor();
+        $comments->closeCursor();
         ?>
 
         <a href="index.php">Retour à l'accueil</a>

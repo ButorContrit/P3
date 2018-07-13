@@ -22,4 +22,10 @@ class FrontController {
         require '../templates/single.php';
     }
 
+    public function alert($id) {
+        $comment = new CommentDAO();
+        $oneComment=$comment->getOneComment($id);
+        require '../templates/comment_alert.php';
+    }
+
 } 

@@ -29,6 +29,10 @@ class Router {
                     $id = $_GET['id'];
                     $this->frontController->article($id);
                 }
+                elseif($_GET['route'] === 'comment_alert') {
+                    $id = $_GET['id'];
+                    $this->frontController->alert($id);
+                }
                 else{
                     echo 'page inconnue';
                 }

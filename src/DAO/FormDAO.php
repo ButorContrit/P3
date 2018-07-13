@@ -36,8 +36,19 @@ class FormDAO extends DAO {
         value="" id="' . $name .'"></textarea>');
     }
 
+    public function hidden($name, $comment_id)
+    {
+        return $this->surround('<input type="hidden" name="' . $name . '"
+        value="' . $comment_id . '">');
+    }
+
     public function submit() {
         return $this->surround('<button type="submit">Envoyer</button>');
+
+    }
+
+    public function submit_signaler() {
+            return $this->surround('<button type="submit">Signaler</button>');
     }
 
 } 
